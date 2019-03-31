@@ -1,0 +1,195 @@
+<html>
+<head>
+    <title>
+        My App
+    </title>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.finger.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/materialize.min.js') }}"></script>
+     <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-linedtextarea.js') }}"></script>
+    <link href="{{ url_for('static', filename='css/jquery-linedtextarea.css') }}" type="text/css" rel="stylesheet" />
+</head>
+<body>
+<input type="text" id = "box">
+<input type = "text" id = "charcount"/>
+<input type="text" id="getpos" value="0"/>
+<input type="text" id="getline" value="0"/>
+
+<button id = "b2" onclick="send()"> send to python</button>
+<button id="button" onclick="toggleStartStop()"></button>
+<textarea id="textarea" rows = 10 cols = 80></textarea>
+<textarea id = "code"  class="lined" rows="10" cols="60" >{{text}}</textarea>
+<script type="text/javascript">
+var recognizing;
+var recognition = new webkitSpeechRecognition();
+recognition.continuous = true;
+recognition.lang = 'en-IN';
+reset();
+recognition.onend = reset();
+
+recognition.onresult = function (event) {
+  for (var i = event.resultIndex; i < event.results.length; ++i) {
+    if (event.results[i].isFinal) {
+    box.value = event.results[i][0].transcript;
+
+    }
+  }
+}
+
+function reset() {
+  recognizing = false;
+  button.innerHTML = "Click to Speak";
+}
+function send(){
+var value1 = box.value;
+if(value1.split(" ")[0]=="goto")
+{
+process(value1.split(" ")[1]);
+document.getElementById('getline').value=value1.split(" ")[1];
+}
+else if(value1.split(" ")[0]=="sr")
+{
+process1(value1.split(" ")[1]);
+//document.getElementById('getline').value=value1.split(" ")[1];
+}
+else if(value1.split(" ")[0]=="sl")
+{
+process2(value1.split(" ")[1]);
+//document.getElementById('getline').value=value1.split(" ")[1];
+}
+else{
+textarea.value += box.value;
+textarea.value += "\n";
+var k=document.getElementById('getline').value;
+ $.ajax({
+				type: 'POST',
+				url: "{{ url_for('process') }}",
+				data: {
+						text: value1,
+				        linenum: k
+					},
+				dataType:"json",
+				success: function(result) {
+				//var obj = jQuery.parseJSON(result);
+				//var obj=JSON.stringify(result);
+				//alert(result['some']);
+				n = parseInt(document.getElementById('getpos').value);
+				document.getElementById('code').value = document.getElementById('code').value.substring(0, n) + result['some'] + document.getElementById('code').value.substring(n);
+                n = n+result['some'].length;
+				document.getElementById('getpos').value=n;
+				//alert(result['chars']);
+				document.getElementById('charcount').value = result['chars']+",";
+				document.getElementById('getline').value = result['linenum'];
+				}
+			});
+			}
+}
+
+function setCaretPosition(ctrl, pos)
+{
+
+	if(ctrl.setSelectionRange)
+	{
+		ctrl.focus();
+		ctrl.setSelectionRange(pos,pos);
+	}
+	else if (ctrl.createTextRange) {
+		var range = ctrl.createTextRange();
+		range.collapse(true);
+		range.moveEnd('character', pos);
+		range.moveStart('character', pos);
+		range.select();
+	}
+}
+
+function process(no)
+{
+    var num = document.getElementById('charcount').value.split(",");
+    //alert(num);
+    var n = 0;
+    //alert(num.length);
+    for(var i =0;i<no-1;i++)
+        //alert(num[i]);
+        n +=parseInt(num[i]);
+    //alert(n);
+    document.getElementById('getpos').value=n;
+	setCaretPosition(document.getElementById('code'),n);
+
+}
+
+function process1(no)
+{
+   /* var num = document.getElementById('charcount').value.split(",");
+    //alert(num);
+    var n = 0;
+    //alert(num.length);
+    for(var i =0;i<no-1;i++)
+        //alert(num[i]);
+        n +=parseInt(num[i]);
+    alert(n);*/
+    var n1 = parseInt(document.getElementById('getpos').value);
+    n1+=parseInt(no);
+    document.getElementById('getpos').value=n1;
+    	setCaretPosition(document.getElementById('code'),n1);
+
+}
+function process2(no)
+{
+   /* var num = document.getElementById('charcount').value.split(",");
+    //alert(num);
+    var n = 0;
+    //alert(num.length);
+    for(var i =0;i<no-1;i++)
+        //alert(num[i]);
+        n +=parseInt(num[i]);
+    alert(n);*/
+    var n1 = parseInt(document.getElementById('getpos').value);
+    n1-=parseInt(no);
+    document.getElementById('getpos').value=n1;
+    	setCaretPosition(document.getElementById('code'),n1);
+
+}
+
+function toggleStartStop() {
+  if (recognizing) {
+    recognition.stop();
+    reset();
+  } else {
+    recognition.start();
+    recognizing = true;
+    button.innerHTML = "Click to Stop";
+  }
+}
+</script>
+<script>
+$(function() {
+	$(".lined").linedtextarea(
+		{selectedLine: 4}
+	);
+});
+</script>
+<script>
+/*
+    $(document).ready(function() {
+
+              $.getJSON("http://localhost:5000/process1", function(json1) {
+              $.each(json1, function(key, data) {
+                    alert(data);
+
+            //    var latLng = new google.maps.LatLng(data.latitude,data.longitude);
+
+
+                });
+                });
+                });
+                window.onload=function() {
+	function foo()
+	{
+		window.location.href="http://localhost:5000/";
+	}
+	setInterval(foo,5000);
+}
+*/
+</script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+int index;
+for(index = initial;index compare final; inc/dec)
+{
+
+}

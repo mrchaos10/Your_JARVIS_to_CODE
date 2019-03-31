@@ -1,0 +1,154 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> statement
+Rule 1     statement -> FOR
+Rule 2     statement -> FOR ITER
+Rule 3     statement -> FOR DEC ITER
+Rule 4     statement -> FOR START NUMBER END NUMBER
+Rule 5     statement -> DEC ITER FOR
+Rule 6     statement -> INC ITER FOR
+
+Terminals, with rules where they appear
+
+DEC                  : 3 5
+END                  : 4
+FOR                  : 1 2 3 4 5 6
+INC                  : 6
+ITER                 : 2 3 5 6
+NUMBER               : 4 4
+START                : 4
+error                : 
+
+Nonterminals, with rules where they appear
+
+statement            : 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . statement
+    (1) statement -> . FOR
+    (2) statement -> . FOR ITER
+    (3) statement -> . FOR DEC ITER
+    (4) statement -> . FOR START NUMBER END NUMBER
+    (5) statement -> . DEC ITER FOR
+    (6) statement -> . INC ITER FOR
+
+    FOR             shift and go to state 2
+    DEC             shift and go to state 3
+    INC             shift and go to state 4
+
+    statement                      shift and go to state 1
+
+state 1
+
+    (0) S' -> statement .
+
+
+
+state 2
+
+    (1) statement -> FOR .
+    (2) statement -> FOR . ITER
+    (3) statement -> FOR . DEC ITER
+    (4) statement -> FOR . START NUMBER END NUMBER
+
+    $end            reduce using rule 1 (statement -> FOR .)
+    ITER            shift and go to state 5
+    DEC             shift and go to state 6
+    START           shift and go to state 7
+
+
+state 3
+
+    (5) statement -> DEC . ITER FOR
+
+    ITER            shift and go to state 8
+
+
+state 4
+
+    (6) statement -> INC . ITER FOR
+
+    ITER            shift and go to state 9
+
+
+state 5
+
+    (2) statement -> FOR ITER .
+
+    $end            reduce using rule 2 (statement -> FOR ITER .)
+
+
+state 6
+
+    (3) statement -> FOR DEC . ITER
+
+    ITER            shift and go to state 10
+
+
+state 7
+
+    (4) statement -> FOR START . NUMBER END NUMBER
+
+    NUMBER          shift and go to state 11
+
+
+state 8
+
+    (5) statement -> DEC ITER . FOR
+
+    FOR             shift and go to state 12
+
+
+state 9
+
+    (6) statement -> INC ITER . FOR
+
+    FOR             shift and go to state 13
+
+
+state 10
+
+    (3) statement -> FOR DEC ITER .
+
+    $end            reduce using rule 3 (statement -> FOR DEC ITER .)
+
+
+state 11
+
+    (4) statement -> FOR START NUMBER . END NUMBER
+
+    END             shift and go to state 14
+
+
+state 12
+
+    (5) statement -> DEC ITER FOR .
+
+    $end            reduce using rule 5 (statement -> DEC ITER FOR .)
+
+
+state 13
+
+    (6) statement -> INC ITER FOR .
+
+    $end            reduce using rule 6 (statement -> INC ITER FOR .)
+
+
+state 14
+
+    (4) statement -> FOR START NUMBER END . NUMBER
+
+    NUMBER          shift and go to state 15
+
+
+state 15
+
+    (4) statement -> FOR START NUMBER END NUMBER .
+
+    $end            reduce using rule 4 (statement -> FOR START NUMBER END NUMBER .)
+
