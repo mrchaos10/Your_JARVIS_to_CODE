@@ -1,0 +1,29 @@
+enum enumerator_a
+{
+    //variable_a;
+    //variable_b;
+    //variable_c;
+    //variable_d;
+    //variable_e;
+    //variable_f;
+    //variable_g;
+    //variable_h;
+    //variable_i;
+    //variable_j;
+    //variable_k;
+    //variable_l;
+    //variable_m;
+    //variable_n;
+    //variable_o;
+    //variable_p;
+    //variable_q;
+    //variable_r;
+    //variable_s;
+    //variable_t;
+    //variable_u;
+    //variable_v;
+    //variable_w;
+    //variable_x;
+    //variable_y;
+    //variable_z;
+};

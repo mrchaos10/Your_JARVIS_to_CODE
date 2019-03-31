@@ -1,0 +1,1 @@
+register float i = 0.0; 

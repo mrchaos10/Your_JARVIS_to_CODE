@@ -1,0 +1,4 @@
+case '1':
+        //some statements to execute when 1
+        break;
+

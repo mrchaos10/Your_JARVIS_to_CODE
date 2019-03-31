@@ -1,0 +1,12 @@
+//simple struct
+struct structname{
+    //declarations start here
+    datatype var;
+    //declarations end here
+}var;
+//array struct
+struct structname{
+    //declarations start here
+    datatype var;
+    //declarations end here
+}var[size];

@@ -1,0 +1,14 @@
+//function-declaration
+char functionnname(paramtype param);
+
+//function-definition
+
+//int function returning float
+float functionname(paramtype param)
+{
+float returnval;
+//all the external statements goes here
+return returnval;
+}
+
+

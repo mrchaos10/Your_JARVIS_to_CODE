@@ -1,0 +1,2 @@
+default:
+    //some statements to execute when default;

@@ -1,0 +1,188 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> statement
+Rule 1     statement -> PRINT
+Rule 2     statement -> PRINT CHAR
+Rule 3     statement -> PRINT NUMBER
+Rule 4     statement -> PRINT FLOAT
+Rule 5     statement -> PRINT FLOAT PRECISION NUMBER
+Rule 6     statement -> PRINT INTEGER VAR
+Rule 7     statement -> PRINT FLOATER VAR
+Rule 8     statement -> PRINT CHARACTER VAR
+Rule 9     statement -> PRINT STRING VAR
+Rule 10    statement -> PRINT STRING
+Rule 11    statement -> PRINT VAR
+
+Terminals, with rules where they appear
+
+CHAR                 : 2
+CHARACTER            : 8
+FLOAT                : 4 5
+FLOATER              : 7
+INTEGER              : 6
+NUMBER               : 3 5
+PRECISION            : 5
+PRINT                : 1 2 3 4 5 6 7 8 9 10 11
+STRING               : 9 10
+VAR                  : 6 7 8 9 11
+error                : 
+
+Nonterminals, with rules where they appear
+
+statement            : 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . statement
+    (1) statement -> . PRINT
+    (2) statement -> . PRINT CHAR
+    (3) statement -> . PRINT NUMBER
+    (4) statement -> . PRINT FLOAT
+    (5) statement -> . PRINT FLOAT PRECISION NUMBER
+    (6) statement -> . PRINT INTEGER VAR
+    (7) statement -> . PRINT FLOATER VAR
+    (8) statement -> . PRINT CHARACTER VAR
+    (9) statement -> . PRINT STRING VAR
+    (10) statement -> . PRINT STRING
+    (11) statement -> . PRINT VAR
+
+    PRINT           shift and go to state 2
+
+    statement                      shift and go to state 1
+
+state 1
+
+    (0) S' -> statement .
+
+
+
+state 2
+
+    (1) statement -> PRINT .
+    (2) statement -> PRINT . CHAR
+    (3) statement -> PRINT . NUMBER
+    (4) statement -> PRINT . FLOAT
+    (5) statement -> PRINT . FLOAT PRECISION NUMBER
+    (6) statement -> PRINT . INTEGER VAR
+    (7) statement -> PRINT . FLOATER VAR
+    (8) statement -> PRINT . CHARACTER VAR
+    (9) statement -> PRINT . STRING VAR
+    (10) statement -> PRINT . STRING
+    (11) statement -> PRINT . VAR
+
+    $end            reduce using rule 1 (statement -> PRINT .)
+    CHAR            shift and go to state 3
+    NUMBER          shift and go to state 4
+    FLOAT           shift and go to state 5
+    INTEGER         shift and go to state 6
+    FLOATER         shift and go to state 8
+    CHARACTER       shift and go to state 9
+    STRING          shift and go to state 10
+    VAR             shift and go to state 7
+
+
+state 3
+
+    (2) statement -> PRINT CHAR .
+
+    $end            reduce using rule 2 (statement -> PRINT CHAR .)
+
+
+state 4
+
+    (3) statement -> PRINT NUMBER .
+
+    $end            reduce using rule 3 (statement -> PRINT NUMBER .)
+
+
+state 5
+
+    (4) statement -> PRINT FLOAT .
+    (5) statement -> PRINT FLOAT . PRECISION NUMBER
+
+    $end            reduce using rule 4 (statement -> PRINT FLOAT .)
+    PRECISION       shift and go to state 11
+
+
+state 6
+
+    (6) statement -> PRINT INTEGER . VAR
+
+    VAR             shift and go to state 12
+
+
+state 7
+
+    (11) statement -> PRINT VAR .
+
+    $end            reduce using rule 11 (statement -> PRINT VAR .)
+
+
+state 8
+
+    (7) statement -> PRINT FLOATER . VAR
+
+    VAR             shift and go to state 13
+
+
+state 9
+
+    (8) statement -> PRINT CHARACTER . VAR
+
+    VAR             shift and go to state 14
+
+
+state 10
+
+    (9) statement -> PRINT STRING . VAR
+    (10) statement -> PRINT STRING .
+
+    VAR             shift and go to state 15
+    $end            reduce using rule 10 (statement -> PRINT STRING .)
+
+
+state 11
+
+    (5) statement -> PRINT FLOAT PRECISION . NUMBER
+
+    NUMBER          shift and go to state 16
+
+
+state 12
+
+    (6) statement -> PRINT INTEGER VAR .
+
+    $end            reduce using rule 6 (statement -> PRINT INTEGER VAR .)
+
+
+state 13
+
+    (7) statement -> PRINT FLOATER VAR .
+
+    $end            reduce using rule 7 (statement -> PRINT FLOATER VAR .)
+
+
+state 14
+
+    (8) statement -> PRINT CHARACTER VAR .
+
+    $end            reduce using rule 8 (statement -> PRINT CHARACTER VAR .)
+
+
+state 15
+
+    (9) statement -> PRINT STRING VAR .
+
+    $end            reduce using rule 9 (statement -> PRINT STRING VAR .)
+
+
+state 16
+
+    (5) statement -> PRINT FLOAT PRECISION NUMBER .
+
+    $end            reduce using rule 5 (statement -> PRINT FLOAT PRECISION NUMBER .)
+

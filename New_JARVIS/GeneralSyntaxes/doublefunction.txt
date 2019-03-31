@@ -1,0 +1,11 @@
+//function-declaration
+double functionnname(paramtype param);
+
+//function-definition
+//double function returning double
+double functionname(paramtype param)
+{
+double returnval;
+//all the external statements goes here
+return returnval;
+}

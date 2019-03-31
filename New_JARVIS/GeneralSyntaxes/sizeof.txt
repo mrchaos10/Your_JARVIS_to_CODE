@@ -1,0 +1,2 @@
+int size=sizeof(data);
+printf("%u bytes.",sizeof(data));

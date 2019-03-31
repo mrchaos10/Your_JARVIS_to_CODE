@@ -1,0 +1,13 @@
+//function-declaration
+int functionnname(paramtype param);
+
+//function-definition
+
+int functionname(paramtype param)
+{
+int returnval;
+//all the external statements goes here
+return returnval;
+}
+
+
