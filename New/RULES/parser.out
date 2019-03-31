@@ -1,0 +1,233 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> statement
+Rule 1     statement -> CHAR
+Rule 2     statement -> SIGNEDCHAR
+Rule 3     statement -> UNSIGNEDCHAR
+Rule 4     statement -> CHAR VAR
+Rule 5     statement -> SIGNEDCHAR VAR
+Rule 6     statement -> UNSIGNEDCHAR VAR
+Rule 7     statement -> CHAR VAR EQUALS NUMBER
+Rule 8     statement -> CHAR VAR EQUALS CHARACTER
+Rule 9     statement -> CHAR VAR EQUALS VAR
+Rule 10    statement -> SIGNEDCHAR VAR EQUALS NUMBER
+Rule 11    statement -> SIGNEDCHAR VAR EQUALS CHARACTER
+Rule 12    statement -> SIGNEDCHAR VAR EQUALS VAR
+Rule 13    statement -> UNSIGNEDCHAR VAR EQUALS NUMBER
+Rule 14    statement -> UNSIGNEDCHAR VAR EQUALS CHARACTER
+Rule 15    statement -> UNSIGNEDCHAR VAR EQUALS VAR
+
+Terminals, with rules where they appear
+
+CHAR                 : 1 4 7 8 9
+CHARACTER            : 8 11 14
+EQUALS               : 7 8 9 10 11 12 13 14 15
+NUMBER               : 7 10 13
+SIGNEDCHAR           : 2 5 10 11 12
+UNSIGNEDCHAR         : 3 6 13 14 15
+VAR                  : 4 5 6 7 8 9 9 10 11 12 12 13 14 15 15
+error                : 
+
+Nonterminals, with rules where they appear
+
+statement            : 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . statement
+    (1) statement -> . CHAR
+    (2) statement -> . SIGNEDCHAR
+    (3) statement -> . UNSIGNEDCHAR
+    (4) statement -> . CHAR VAR
+    (5) statement -> . SIGNEDCHAR VAR
+    (6) statement -> . UNSIGNEDCHAR VAR
+    (7) statement -> . CHAR VAR EQUALS NUMBER
+    (8) statement -> . CHAR VAR EQUALS CHARACTER
+    (9) statement -> . CHAR VAR EQUALS VAR
+    (10) statement -> . SIGNEDCHAR VAR EQUALS NUMBER
+    (11) statement -> . SIGNEDCHAR VAR EQUALS CHARACTER
+    (12) statement -> . SIGNEDCHAR VAR EQUALS VAR
+    (13) statement -> . UNSIGNEDCHAR VAR EQUALS NUMBER
+    (14) statement -> . UNSIGNEDCHAR VAR EQUALS CHARACTER
+    (15) statement -> . UNSIGNEDCHAR VAR EQUALS VAR
+
+    CHAR            shift and go to state 2
+    SIGNEDCHAR      shift and go to state 1
+    UNSIGNEDCHAR    shift and go to state 3
+
+    statement                      shift and go to state 4
+
+state 1
+
+    (2) statement -> SIGNEDCHAR .
+    (5) statement -> SIGNEDCHAR . VAR
+    (10) statement -> SIGNEDCHAR . VAR EQUALS NUMBER
+    (11) statement -> SIGNEDCHAR . VAR EQUALS CHARACTER
+    (12) statement -> SIGNEDCHAR . VAR EQUALS VAR
+
+    $end            reduce using rule 2 (statement -> SIGNEDCHAR .)
+    VAR             shift and go to state 5
+
+
+state 2
+
+    (1) statement -> CHAR .
+    (4) statement -> CHAR . VAR
+    (7) statement -> CHAR . VAR EQUALS NUMBER
+    (8) statement -> CHAR . VAR EQUALS CHARACTER
+    (9) statement -> CHAR . VAR EQUALS VAR
+
+    $end            reduce using rule 1 (statement -> CHAR .)
+    VAR             shift and go to state 6
+
+
+state 3
+
+    (3) statement -> UNSIGNEDCHAR .
+    (6) statement -> UNSIGNEDCHAR . VAR
+    (13) statement -> UNSIGNEDCHAR . VAR EQUALS NUMBER
+    (14) statement -> UNSIGNEDCHAR . VAR EQUALS CHARACTER
+    (15) statement -> UNSIGNEDCHAR . VAR EQUALS VAR
+
+    $end            reduce using rule 3 (statement -> UNSIGNEDCHAR .)
+    VAR             shift and go to state 7
+
+
+state 4
+
+    (0) S' -> statement .
+
+
+
+state 5
+
+    (5) statement -> SIGNEDCHAR VAR .
+    (10) statement -> SIGNEDCHAR VAR . EQUALS NUMBER
+    (11) statement -> SIGNEDCHAR VAR . EQUALS CHARACTER
+    (12) statement -> SIGNEDCHAR VAR . EQUALS VAR
+
+    $end            reduce using rule 5 (statement -> SIGNEDCHAR VAR .)
+    EQUALS          shift and go to state 8
+
+
+state 6
+
+    (4) statement -> CHAR VAR .
+    (7) statement -> CHAR VAR . EQUALS NUMBER
+    (8) statement -> CHAR VAR . EQUALS CHARACTER
+    (9) statement -> CHAR VAR . EQUALS VAR
+
+    $end            reduce using rule 4 (statement -> CHAR VAR .)
+    EQUALS          shift and go to state 9
+
+
+state 7
+
+    (6) statement -> UNSIGNEDCHAR VAR .
+    (13) statement -> UNSIGNEDCHAR VAR . EQUALS NUMBER
+    (14) statement -> UNSIGNEDCHAR VAR . EQUALS CHARACTER
+    (15) statement -> UNSIGNEDCHAR VAR . EQUALS VAR
+
+    $end            reduce using rule 6 (statement -> UNSIGNEDCHAR VAR .)
+    EQUALS          shift and go to state 10
+
+
+state 8
+
+    (10) statement -> SIGNEDCHAR VAR EQUALS . NUMBER
+    (11) statement -> SIGNEDCHAR VAR EQUALS . CHARACTER
+    (12) statement -> SIGNEDCHAR VAR EQUALS . VAR
+
+    NUMBER          shift and go to state 13
+    CHARACTER       shift and go to state 12
+    VAR             shift and go to state 11
+
+
+state 9
+
+    (7) statement -> CHAR VAR EQUALS . NUMBER
+    (8) statement -> CHAR VAR EQUALS . CHARACTER
+    (9) statement -> CHAR VAR EQUALS . VAR
+
+    NUMBER          shift and go to state 16
+    CHARACTER       shift and go to state 15
+    VAR             shift and go to state 14
+
+
+state 10
+
+    (13) statement -> UNSIGNEDCHAR VAR EQUALS . NUMBER
+    (14) statement -> UNSIGNEDCHAR VAR EQUALS . CHARACTER
+    (15) statement -> UNSIGNEDCHAR VAR EQUALS . VAR
+
+    NUMBER          shift and go to state 19
+    CHARACTER       shift and go to state 18
+    VAR             shift and go to state 17
+
+
+state 11
+
+    (12) statement -> SIGNEDCHAR VAR EQUALS VAR .
+
+    $end            reduce using rule 12 (statement -> SIGNEDCHAR VAR EQUALS VAR .)
+
+
+state 12
+
+    (11) statement -> SIGNEDCHAR VAR EQUALS CHARACTER .
+
+    $end            reduce using rule 11 (statement -> SIGNEDCHAR VAR EQUALS CHARACTER .)
+
+
+state 13
+
+    (10) statement -> SIGNEDCHAR VAR EQUALS NUMBER .
+
+    $end            reduce using rule 10 (statement -> SIGNEDCHAR VAR EQUALS NUMBER .)
+
+
+state 14
+
+    (9) statement -> CHAR VAR EQUALS VAR .
+
+    $end            reduce using rule 9 (statement -> CHAR VAR EQUALS VAR .)
+
+
+state 15
+
+    (8) statement -> CHAR VAR EQUALS CHARACTER .
+
+    $end            reduce using rule 8 (statement -> CHAR VAR EQUALS CHARACTER .)
+
+
+state 16
+
+    (7) statement -> CHAR VAR EQUALS NUMBER .
+
+    $end            reduce using rule 7 (statement -> CHAR VAR EQUALS NUMBER .)
+
+
+state 17
+
+    (15) statement -> UNSIGNEDCHAR VAR EQUALS VAR .
+
+    $end            reduce using rule 15 (statement -> UNSIGNEDCHAR VAR EQUALS VAR .)
+
+
+state 18
+
+    (14) statement -> UNSIGNEDCHAR VAR EQUALS CHARACTER .
+
+    $end            reduce using rule 14 (statement -> UNSIGNEDCHAR VAR EQUALS CHARACTER .)
+
+
+state 19
+
+    (13) statement -> UNSIGNEDCHAR VAR EQUALS NUMBER .
+
+    $end            reduce using rule 13 (statement -> UNSIGNEDCHAR VAR EQUALS NUMBER .)
+
