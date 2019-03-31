@@ -1,0 +1,2 @@
+typedef char typedefname;
+typedefname var;

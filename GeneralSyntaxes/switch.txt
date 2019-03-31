@@ -1,0 +1,10 @@
+switch(expression)
+{
+    //case conditions start here.
+    case 'expressionvalue':
+    //some statements to execute when 1
+    break;
+    //case conditions end here.
+    default:
+    //some statements to execute when default;
+}

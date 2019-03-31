@@ -1,0 +1,8 @@
+//function-declaration
+void functionnname(paramtype param);
+
+//function-definition
+void functionname(paramtype param)
+{
+//all the external statements goes here
+}

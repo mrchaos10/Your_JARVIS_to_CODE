@@ -1,0 +1,224 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> statement
+Rule 1     statement -> FOR
+Rule 2     statement -> FOR ITER
+Rule 3     statement -> FOR DEC ITER
+Rule 4     statement -> FOR START NUMBER END NUMBER
+Rule 5     statement -> DEC ITER FOR
+Rule 6     statement -> INC ITER FOR
+Rule 7     statement -> FOR NUMBER NUMBER
+Rule 8     statement -> FOR INC ITER
+Rule 9     statement -> FOR VAR EQ NUMBER NUMBER
+
+Terminals, with rules where they appear
+
+DEC                  : 3 5
+END                  : 4
+EQ                   : 9
+FOR                  : 1 2 3 4 5 6 7 8 9
+INC                  : 6 8
+ITER                 : 2 3 5 6 8
+NUMBER               : 4 4 7 7 9 9
+START                : 4
+VAR                  : 9
+error                : 
+
+Nonterminals, with rules where they appear
+
+statement            : 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . statement
+    (1) statement -> . FOR
+    (2) statement -> . FOR ITER
+    (3) statement -> . FOR DEC ITER
+    (4) statement -> . FOR START NUMBER END NUMBER
+    (5) statement -> . DEC ITER FOR
+    (6) statement -> . INC ITER FOR
+    (7) statement -> . FOR NUMBER NUMBER
+    (8) statement -> . FOR INC ITER
+    (9) statement -> . FOR VAR EQ NUMBER NUMBER
+
+    FOR             shift and go to state 2
+    DEC             shift and go to state 3
+    INC             shift and go to state 4
+
+    statement                      shift and go to state 1
+
+state 1
+
+    (0) S' -> statement .
+
+
+
+state 2
+
+    (1) statement -> FOR .
+    (2) statement -> FOR . ITER
+    (3) statement -> FOR . DEC ITER
+    (4) statement -> FOR . START NUMBER END NUMBER
+    (7) statement -> FOR . NUMBER NUMBER
+    (8) statement -> FOR . INC ITER
+    (9) statement -> FOR . VAR EQ NUMBER NUMBER
+
+    $end            reduce using rule 1 (statement -> FOR .)
+    ITER            shift and go to state 5
+    DEC             shift and go to state 6
+    START           shift and go to state 7
+    NUMBER          shift and go to state 8
+    INC             shift and go to state 9
+    VAR             shift and go to state 10
+
+
+state 3
+
+    (5) statement -> DEC . ITER FOR
+
+    ITER            shift and go to state 11
+
+
+state 4
+
+    (6) statement -> INC . ITER FOR
+
+    ITER            shift and go to state 12
+
+
+state 5
+
+    (2) statement -> FOR ITER .
+
+    $end            reduce using rule 2 (statement -> FOR ITER .)
+
+
+state 6
+
+    (3) statement -> FOR DEC . ITER
+
+    ITER            shift and go to state 13
+
+
+state 7
+
+    (4) statement -> FOR START . NUMBER END NUMBER
+
+    NUMBER          shift and go to state 14
+
+
+state 8
+
+    (7) statement -> FOR NUMBER . NUMBER
+
+    NUMBER          shift and go to state 15
+
+
+state 9
+
+    (8) statement -> FOR INC . ITER
+
+    ITER            shift and go to state 16
+
+
+state 10
+
+    (9) statement -> FOR VAR . EQ NUMBER NUMBER
+
+    EQ              shift and go to state 17
+
+
+state 11
+
+    (5) statement -> DEC ITER . FOR
+
+    FOR             shift and go to state 18
+
+
+state 12
+
+    (6) statement -> INC ITER . FOR
+
+    FOR             shift and go to state 19
+
+
+state 13
+
+    (3) statement -> FOR DEC ITER .
+
+    $end            reduce using rule 3 (statement -> FOR DEC ITER .)
+
+
+state 14
+
+    (4) statement -> FOR START NUMBER . END NUMBER
+
+    END             shift and go to state 20
+
+
+state 15
+
+    (7) statement -> FOR NUMBER NUMBER .
+
+    $end            reduce using rule 7 (statement -> FOR NUMBER NUMBER .)
+
+
+state 16
+
+    (8) statement -> FOR INC ITER .
+
+    $end            reduce using rule 8 (statement -> FOR INC ITER .)
+
+
+state 17
+
+    (9) statement -> FOR VAR EQ . NUMBER NUMBER
+
+    NUMBER          shift and go to state 21
+
+
+state 18
+
+    (5) statement -> DEC ITER FOR .
+
+    $end            reduce using rule 5 (statement -> DEC ITER FOR .)
+
+
+state 19
+
+    (6) statement -> INC ITER FOR .
+
+    $end            reduce using rule 6 (statement -> INC ITER FOR .)
+
+
+state 20
+
+    (4) statement -> FOR START NUMBER END . NUMBER
+
+    NUMBER          shift and go to state 22
+
+
+state 21
+
+    (9) statement -> FOR VAR EQ NUMBER . NUMBER
+
+    NUMBER          shift and go to state 23
+
+
+state 22
+
+    (4) statement -> FOR START NUMBER END NUMBER .
+
+    $end            reduce using rule 4 (statement -> FOR START NUMBER END NUMBER .)
+
+
+state 23
+
+    (9) statement -> FOR VAR EQ NUMBER NUMBER .
+
+    $end            reduce using rule 9 (statement -> FOR VAR EQ NUMBER NUMBER .)
+
